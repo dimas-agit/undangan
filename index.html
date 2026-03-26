@@ -18,8 +18,8 @@
     <meta property="og:title" content="Website Undangan Pernikahan Wahyu dan Riski Secara Online">
     <meta property="og:description" content="Website Undangan Pernikahan Wahyu dan Riski Secara Online">
     <meta property="og:keywords" content="undangan, wedding, undangan digital, undangan online, wedding invitation, template undangan, template undangan pernikahan, undangan pernikahan, template undangan online, wedding invitation github, template website, template website undangan pernikahan">
-    <meta property="og:image" content="https://ulems.my.id/assets/images/bg.webp">
-    <meta property="og:image:secure_url" content="https://ulems.my.id/assets/images/bg.webp">
+    <meta property="og:image" content="https://ulems.my.id/assets/images/artfoto.webp">
+    <meta property="og:image:secure_url" content="https://ulems.my.id/assets/images/artfoto.webp">
     <meta property="og:image:type" content="image/webp">
     <meta property="og:image:alt" content="Website Undangan Pernikahan Wahyu dan Riski Secara Online">
     <meta property="og:image:width" content="980">
@@ -36,8 +36,8 @@
     <meta name="color-scheme" content="dark light">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="canonical" href="https://ulems.my.id/">
-    <link rel="icon" type="image/png" sizes="192x192" href="https://ulems.my.id/assets/images/icon-192x192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="https://ulems.my.id/assets/images/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://ulems.my.id/assets/images/">
+    <link rel="apple-touch-icon" sizes="192x192" href="https://ulems.my.id/assets/images/">
 
     <!-- Preconnect CDN -->
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
@@ -49,6 +49,9 @@
 
     <!-- Preload Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" as="style">
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com/)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com/)" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha256-2FMn2Zx6PuH5tdBQDRNwrOo60ts5wWPC9R8jK67b3t4=" crossorigin="anonymous" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" integrity="sha256-4rTIfo5GQTi/7UJqoyUJQKzxW8VN/YBH31+Cy+vTZj4=" crossorigin="anonymous" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha256-5P1JGBOIxI7FBAvT/mb1fCnI5n/NhQKzNUuW7Hq0fMc=" crossorigin="anonymous" as="script">
@@ -85,14 +88,54 @@
 <!-- It's recommended to use 'data-src' in the <img> tag -->
 
 <!-- <html lang="id" data-bs-theme="auto"> ['auto', 'dark', 'light'] -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.story-item');
+    let currentIdx = 0;
 
-<body data-key="d9faced3377732b0edf19e90d1bde0cd5de04801c75eb41743" data-url="https://api.ulems.my.id/" data-audio="" data-confetti="true" data-time="2026-03-30 09:30:00">
+    function typeEffect(element, text, speed, callback) {
+        let i = 0;
+        element.innerHTML = "";
+        const timer = setInterval(() => {
+            if (i < text.length) {
+                element.append(text.charAt(i));
+                i++;
+            } else {
+                clearInterval(timer);
+                if (callback) setTimeout(callback, 3000); // Tunggu 3 detik setelah selesai mengetik
+            }
+        }, speed);
+    }
+
+    function showNextStory() {
+        if (currentIdx >= items.length) return;
+
+        const currentItem = items[currentIdx];
+        const typingElement = currentItem.querySelector('.typing-text');
+        const textToType = typingElement.innerText;
+
+        // Tampilkan container item
+        currentItem.classList.remove('d-none');
+        
+        // Jalankan efek mengetik
+        typeEffect(typingElement, textToType, 30, () => {
+            currentIdx++;
+            showNextStory();
+        });
+    }
+
+    // Jalankan animasi saat tombol "Lihat Story" diklik atau saat section terlihat
+    // Untuk demo ini, kita jalankan langsung:
+    showNextStory();
+});
+</script>
+<body data-key="d9faced3377732b0edf19e90d1bde0cd5de04801c75eb41743" data-url="https://api.ulems.my.id/" data-audio="assets/music/Ed Sheeran - Perfect (Lyrics)_256k.mp3 " data-confetti="true" data-time="2026-03-30 09:30:00">
 
     <!-- Root Invitation -->
     <div class="row m-0 p-0 opacity-0" id="root">
 
         <!-- Desktop mode -->
-        <div class="sticky-top vh-100 d-none d-sm-block col-sm-5 col-md-6 col-lg-7 col-xl-8 col-xxl-9 overflow-y-hidden m-0 p-0">
+       <div class="sticky-top vh-100 d-none d-sm-block col-sm-5 col-md-6 col-lg-7 col-xl-8 col-xxl-9 overflow-y-hidden m-0 p-0">
             <div class="position-relative bg-white-black d-flex justify-content-center align-items-center vh-100">
                 <div class="d-flex position-absolute w-100 h-100">
                     <div class="position-relative overflow-hidden vw-100">
@@ -109,8 +152,8 @@
                 </div>
 
                 <div class="text-center p-4 bg-overlay-auto rounded-5">
-                    <h2 class="font-esthetic mb-4" style="font-size: 2rem;">Wahyu &amp; Riski</h2>
-                    <p class="m-0" style="font-size: 1rem;">Rabu, 15 Maret 2023</p>
+                    <h2 class="font-esthetic mb-4" style="font-size: 2rem;">Wahyu &amp; Riska</h2>
+                    <p class="m-0" style="font-size: 1rem;">Rabu, 23 Maret 2026</p>
                 </div>
             </div>
         </div>
@@ -127,9 +170,9 @@
                     <div class="position-relative text-center bg-overlay-auto" style="background-color: unset;">
                         <h1 class="font-esthetic pt-5 pb-4 fw-medium" style="font-size: 2.25rem;">Undangan Pernikahan</h1>
 
-                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.webp" alt="bg" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
+                        <img src="./assets/images/placeholder.webp" data-src="./assets/images/artfoto.webp" alt="bg" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
 
-                        <h2 class="font-esthetic my-4" style="font-size: 2.25rem;">Wahyu &amp; Riski</h2>
+                        <h2 class="font-esthetic my-4" style="font-size: 2.25rem;">Wahyu &amp; Riska</h2>
                         <p class="my-2" style="font-size: 1.25rem;">Rabu, 23 Maret 2026</p>
 
                         <button class="btn btn-outline-auto btn-sm shadow rounded-pill px-3 py-1" style="font-size: 0.825rem;">
@@ -170,8 +213,8 @@
                             </div>
 
                             <div data-aos="fade-right" data-aos-duration="2000" class="pb-1">
-                                <img src="./assets/images/placeholder.webp" data-src="./assets/images/cowo.webp" alt="cowo" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
-                                <h2 class="font-esthetic m-0" style="font-size: 2.125rem;">Nama Wahyu Siapa</h2>
+                                <img src="./assets/images/artcowo.webp" data-src="./assets/images/artcowo.webp" alt="cowo" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
+                                <h2 class="font-esthetic m-0" style="font-size: 2.125rem;">Wahyu</h2>
                                 <p class="mt-3 mb-1" style="font-size: 1.25rem;">Putra ke-1</p>
                                 <p class="mb-0" style="font-size: 0.95rem;">Bapak lorem ipsum</p>
                                 <p class="mb-0" style="font-size: 0.95rem;">dan</p>
@@ -197,8 +240,8 @@
                             </div>
 
                             <div data-aos="fade-left" data-aos-duration="2000" class="pb-1">
-                                <img src="./assets/images/placeholder.webp" data-src="./assets/images/cewe.webp" alt="cewe" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
-                                <h2 class="font-esthetic m-0" style="font-size: 2.125rem;">Nama Riski Siapa</h2>
+                                <img src="./assets/images/placeholder.webp" data-src="./assets/images/artcewe.webp" alt="cewe" onclick="undangan.guest.modal(this)" class="img-center-crop rounded-circle border border-3 border-light shadow my-4 mx-auto cursor-pointer">
+                                <h2 class="font-esthetic m-0" style="font-size: 2.125rem;">Riska</h2>
                                 <p class="mt-3 mb-1" style="font-size: 1.25rem;">Putri ke-2</p>
                                 <p class="mb-0" style="font-size: 0.95rem;">Bapak lorem ipsum</p>
                                 <p class="mb-0" style="font-size: 0.95rem;">dan</p>
@@ -262,44 +305,46 @@
                                     <button class="btn btn-outline-auto btn-sm rounded-4 shadow-sm" onclick="undangan.guest.showStory(this.parentNode)"><i class="fa-solid fa-heart fa-bounce me-2"></i>Lihat Story</button>
                                 </div>
 
-                                <div class="overflow-y-scroll overflow-x-hidden p-2 with-scrollbar" style="height: 15rem;">
-                                    <div class="row">
-                                        <div class="col-auto position-relative">
-                                            <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">1</p>
-                                            <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
-                                        </div>
-                                        <div class="col mt-1 mb-3 ps-0">
-                                            <p class="fw-bold mb-2">💼 Awal Pertemuan Sederhana</p>
-                                            <p class="small mb-0">
-                                                Pada Januari 2025, Wahyu, seorang desainer grafis berusia 28 tahun, bertemu Riski, copywriter yang dikenal cerdas dan pendiam, dalam proyek branding perusahaan. Interaksi mereka di ruang rapat terbatas pada urusan kerja, penuh adab dan profesional. Tanpa Wahyu ketahui, Riski sebenarnya pernah melihat karya desain Wahyu di lomba nasional dua tahun lalu dan kagum dengan bakatnya. Namun, sesuai prinsipnya, Riski menjaga jarak dan hanya fokus pada tugas, menghindari interaksi yang tidak perlu.
-                                            </p>
-                                        </div>
+                              <div class="overflow-y-scroll overflow-x-hidden p-2 with-scrollbar" style="height: 20rem;" id="story-container">
+                                <div class="row story-item mb-4">
+                                    <div class="col-auto position-relative">
+                                        <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">1</p>
+                                        <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
                                     </div>
-                                    <div class="row">
-                                        <div class="col-auto position-relative">
-                                            <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">2</p>
-                                            <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
-                                        </div>
-                                        <div class="col mt-1 mb-3 ps-0">
-                                            <p class="fw-bold mb-2">💞 Benih Cinta dalam Ujian</p>
-                                            <p class="small mb-0">
-                                                Memasuki Februari 2025, proyek mereka menghadapi krisis: klien menolak konsep awal dan mengancam membatalkan kontrak. Di tengah tekanan, Riski tampil dengan solusi kreatif yang menyelamatkan proyek, membuat Wahyu terkesan dengan ketenangan dan kecerdasannya. Diam-diam, Wahyu mulai memperhatikan Riski lebih dalam, terutama melalui unggahan media sosialnya yang penuh dengan nilai keimanan dan kesabaran. Merasa ada kesamaan visi, Wahyu beristikharah dan memutuskan memulai taaruf. Ia menghubungi seorang ustaz terpercaya sebagai perantara. Kejutan muncul saat Riski mengaku bahwa ia juga telah lama memperhatikan Wahyu, namun menahan diri hingga ada niat yang jelas, sebuah pengakuan yang membuat hati Wahyu hangat.
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-auto position-relative">
-                                            <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">3</p>
-                                            <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
-                                        </div>
-                                        <div class="col mt-1 mb-3 ps-0">
-                                            <p class="fw-bold mb-2">💍 Langkah Menuju Ridha Allah</p>
-                                            <p class="small mb-0">
-                                                Proses taaruf berjalan penuh keikhlasan, dengan pendamping yang memastikan setiap langkah sesuai syariat. Wahyu dan Riski saling terbuka tentang impian membangun keluarga yang diridhai Allah. Namun, sebuah ujian datang: keluarga Riski ragu karena latar belakang ekonomi Wahyu yang sederhana. Di sinilah plot twist terungkap—Wahyu mempresentasikan rencana usaha sosial berbasis seni yang telah ia kembangkan diam-diam, menunjukkan visinya untuk memberi manfaat bagi umat. Presentasi itu meluluhkan hati keluarga Riski. Pada Maret 2025, setelah istikharah dan mendapat restu keluarga, Wahyu melamar Riski dalam acara sederhana namun penuh makna. Dengan niat tulus, mereka melangkah menuju pernikahan, yakin bahwa Allah telah merajut kisah mereka dengan indah.
-                                            </p>
-                                        </div>
+                                    <div class="col mt-1 mb-3 ps-0">
+                                        <p class="fw-bold mb-2">💼 Awal Pertemuan Sederhana</p>
+                                        <p class="small mb-0 typing-text" style="line-height: 1.8; text-align: justify; letter-spacing: 0.5px;">
+                                            Pada Januari 2025, Wahyu, seorang desainer grafis berusia 28 tahun, bertemu Riska, copywriter yang dikenal cerdas dan pendiam, dalam proyek branding perusahaan. Interaksi mereka di ruang rapat terbatas pada urusan kerja, penuh adab dan profesional.
+                                        </p>
                                     </div>
                                 </div>
+
+                                <div class="row story-item mb-4 d-none">
+                                    <div class="col-auto position-relative">
+                                        <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">2</p>
+                                        <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
+                                    </div>
+                                    <div class="col mt-1 mb-3 ps-0">
+                                        <p class="fw-bold mb-2">💞 Benih Cinta dalam Ujian</p>
+                                        <p class="small mb-0 typing-text" style="line-height: 1.8; text-align: justify; letter-spacing: 0.5px;">
+                                            Memasuki Februari 2025, proyek mereka menghadapi krisis. Di tengah tekanan, Riska tampil dengan solusi kreatif yang menyelamatkan proyek. Wahyu mulai memperhatikan Riska lebih dalam dan merasa ada kesamaan visi, hingga akhirnya memutuskan memulai taaruf.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row story-item mb-4 d-none">
+                                    <div class="col-auto position-relative">
+                                        <p class="position-relative d-flex justify-content-center align-items-center bg-theme-auto border border-secondary border-2 opacity-100 rounded-circle m-0 p-0 z-1" style="width: 2rem; height: 2rem;">3</p>
+                                        <hr class="position-absolute top-0 start-50 translate-middle-x border border-secondary h-100 z-0 opacity-100 m-0 rounded-4 shadow-none">
+                                    </div>
+                                    <div class="col mt-1 mb-3 ps-0">
+                                        <p class="fw-bold mb-2">💍 Langkah Menuju Ridha Allah</p>
+                                        <p class="small mb-0 typing-text" style="line-height: 1.8; text-align: justify; letter-spacing: 0.5px;">
+                                            Proses taaruf berjalan penuh keikhlasan. Pada Maret 2025, setelah istikharah dan mendapat restu keluarga, Wahyu melamar Riska dalam acara sederhana namun penuh makna. Kini mereka melangkah menuju pernikahan yang diridhai-Nya.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -603,7 +648,7 @@
 
                         <div class="row align-items-center justify-content-between flex-column pb-3">
                             <div class="col-auto">
-                                <small>Build with<i class="fa-solid fa-heart mx-1"></i>Dewanakl</small>
+                                <small>Build with<i class="fa-solid fa-heart mx-1"></i></small>
                             </div>
                             <div class="col-auto">
                                 <small><i class="fa-brands fa-github me-1"></i><a target="_blank" href="https://github.com/dewanakl/undangan">github</a></small>
@@ -659,9 +704,10 @@
             <div class="d-flex flex-column text-center">
                 <h2 class="font-esthetic mb-4" style="font-size: 2.25rem;">The Wedding Of</h2>
 
-                <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.webp" alt="background" class="img-center-crop rounded-circle border border-3 border-light shadow mb-4 mx-auto">
+                <img src="./assets/images/placeholder.webp" data-src="./assets/images/artfoto.webp" alt="background" class="img-center-crop rounded-circle border border-3 border-light shadow mb-4 mx-auto">
 
-                <h2 class="font-esthetic mb-4" style="font-size: 2.25rem;">Wahyu &amp; Riski</h2>
+
+                <h2 class="font-esthetic mb-4" style="font-size: 2.25rem;">Wahyu &amp; Riska</h2>
                 <div id="guest-name" data-message="Kepada Yth Bapak/Ibu/Saudara/i"></div>
 
                 <button type="button" class="btn btn-light shadow rounded-4 mt-3 mx-auto" onclick="undangan.guest.open(this)"><i class="fa-solid fa-envelope-open fa-bounce me-2"></i>Open Invitation</button>
@@ -686,7 +732,7 @@
     <div class="loading-page bg-white-black" id="loading" style="opacity: 1;">
         <div class="d-flex justify-content-center align-items-center vh-100 overflow-y-auto">
             <div class="d-flex flex-column width-loading text-center">
-                <img src="./assets/images/placeholder.webp" data-src="./assets/images/icon-192x192.png" fetchpriority="high" class="img-fluid mb-3 mx-auto object-fit-cover opacity-0" alt="icon" style="width: 3.5rem; height: 3.5rem;">
+                <img src="./assets/images/placeholder.web" data-src="./assets/images/icon-192x192.png" fetchpriority="high" class="img-fluid mb-3 mx-auto object-fit-cover opacity-0" alt="icon" style="width: 3.5rem; height: 3.5rem;">
                 <div class="progress" role="progressbar" style="height: 0.5rem;" aria-label="progress bar">
                     <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
                 </div>
@@ -699,7 +745,7 @@
         <div class="text-center position-fixed w-100" style="bottom: 8%; left: 0;">
             <div class="d-flex flex-column">
                 <small class="text-secondary">from</small>
-                <small class="text-theme-auto"><i class="fa-brands fa-github me-1"></i>dewanakl</small>
+                <small class="text-theme-auto"><i class="fa-brands fa-github me-1"></i></small>
             </div>
         </div>
     </div>

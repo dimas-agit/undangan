@@ -25,6 +25,7 @@ html {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
+    object-position: center 20%; 
 }
 
 html[data-bs-theme="dark"] .btn-transparent {
@@ -112,4 +113,26 @@ svg {
 
 .no-gap-bottom {
     margin-bottom: -0.75rem !important;
+}
+
+.custom-story-container {
+    scroll-behavior: smooth;
+}
+
+/* Efek Kursor Mengetik */
+.typing-text::after {
+    content: "|";
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Membatasi teks agar tidak terlalu lebar di layar besar */
+.story-item {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
