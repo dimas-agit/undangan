@@ -280,6 +280,8 @@ export const util = (() => {
         return str;
     };
 
+
+    const getValue = (id) => document.getElementById(id)?.value || null;
     return {
         loader,
         ask,
@@ -297,5 +299,6 @@ export const util = (() => {
         changeOpacity,
         getGMTOffset,
         convertMarkdownToHTML,
+        getValue
     };
 })();

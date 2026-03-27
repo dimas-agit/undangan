@@ -8,9 +8,11 @@ import { storage } from '../../common/storage.js';
 import { session } from '../../common/session.js';
 import { offline } from '../../common/offline.js';
 import { comment } from '../components/comment.js';
+import { invitation } from '../components/invitation.js';
 import { pool, request, HTTP_GET, HTTP_PATCH, HTTP_PUT } from '../../connection/request.js';
 
 export const admin = (() => {
+
 
     /**
      * @returns {Promise<void>}
@@ -307,6 +309,10 @@ export const admin = (() => {
         auth.clearSession();
     };
 
+
+     
+
+
     /**
      * @returns {void}
      */
@@ -346,12 +352,68 @@ export const admin = (() => {
             storage('information').clear();
         }
 
-        window.addEventListener('load', () => pool.init(pageLoaded, ['gif']));
+        window.addEventListener('load', () => {
+            invitation.init();
+            pool.init(pageLoaded, ['gif']);
+
+            // Initialize Select2 for user select
+            $('#user_id').select2();
+
+            // Initialize Tempus Dominus for date/time inputs
+            new tempusDominus.TempusDominus(document.getElementById('wedding_date'), {
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        decades: true,
+                        clock: true,
+                        hours: true,
+                        minutes: true,
+                        seconds: false
+                    }
+                }
+            });
+
+            new tempusDominus.TempusDominus(document.getElementById('akad_time'), {
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        decades: true,
+                        clock: true,
+                        hours: true,
+                        minutes: true,
+                        seconds: false
+                    }
+                }
+            });
+
+            new tempusDominus.TempusDominus(document.getElementById('reception_time'), {
+                display: {
+                    components: {
+                        calendar: true,
+                        date: true,
+                        month: true,
+                        year: true,
+                        decades: true,
+                        clock: true,
+                        hours: true,
+                        minutes: true,
+                        seconds: false
+                    }
+                }
+            });
+        });
 
         return {
             util,
             theme,
             comment,
+            invitation,
             admin: {
                 auth,
                 navbar,
@@ -365,7 +427,7 @@ export const admin = (() => {
                 enableButtonName,
                 enableButtonPassword,
                 openLists,
-                changeTz,
+                changeTz
             },
         };
     };
