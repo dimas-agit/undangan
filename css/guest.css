@@ -136,3 +136,60 @@ svg {
     margin-left: auto;
     margin-right: auto;
 }
+
+.dynamic-gallery-grid {
+    display: grid;
+    /* Membuat 4 kolom dasar untuk fleksibilitas span */
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px; /* Tinggi dasar setiap baris */
+    grid-auto-flow: dense; /* Mengisi ruang kosong secara otomatis */
+    gap: 12px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: var(--bs-body-bg); /* Warna menyatu dengan tema */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Menjaga foto tidak gepeng */
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* --- LOGIKA GRID DINAMIS --- */
+
+/* Horizontal: Mengambil 2 kolom */
+.item-h {
+    grid-column: span 2;
+}
+
+/* Vertikal: Mengambil 2 baris */
+.item-v {
+    grid-row: span 2;
+}
+
+/* --- RESPONSIVE MOBILE (HP) --- */
+@media (max-width: 768px) {
+    .dynamic-gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* Maksimal 2 kolom di HP */
+        grid-auto-rows: 140px;
+    }
+
+    .item-h {
+        grid-column: span 2; /* Tetap horizontal lebar di mobile */
+    }
+
+    .item-v {
+        grid-row: span 2; /* Tetap vertikal panjang di mobile */
+    }
+}

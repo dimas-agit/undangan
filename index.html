@@ -89,10 +89,21 @@
 
 <!-- <html lang="id" data-bs-theme="auto"> ['auto', 'dark', 'light'] -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+let typingStarted = false; // Flag agar animasi tidak double jika diklik berkali-kali
+
+function startTypingStory(overlayElement) {
+    if (typingStarted) return;
+    typingStarted = true;
+
+    // 1. Sembunyikan tombol/overlay "Lihat Story"
+   if (overlayElement) {
+        overlayElement.remove(); // Ini akan menghapus elemen dari HTML, bukan cuma sembunyi
+    }
+
     const items = document.querySelectorAll('.story-item');
     let currentIdx = 0;
 
+    // Fungsi inti efek mengetik
     function typeEffect(element, text, speed, callback) {
         let i = 0;
         element.innerHTML = "";
@@ -102,32 +113,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 i++;
             } else {
                 clearInterval(timer);
-                if (callback) setTimeout(callback, 3000); // Tunggu 3 detik setelah selesai mengetik
+                if (callback) setTimeout(callback, 1500); // Jeda 1.5 detik sebelum paragraf berikutnya muncul
             }
         }, speed);
     }
 
+    // Fungsi untuk menjalankan urutan story
     function showNextStory() {
         if (currentIdx >= items.length) return;
 
         const currentItem = items[currentIdx];
         const typingElement = currentItem.querySelector('.typing-text');
+        
+        // Ambil teks asli lalu kosongkan untuk efek mengetik
         const textToType = typingElement.innerText;
+        typingElement.innerText = ""; 
 
-        // Tampilkan container item
+        // Tampilkan row (hapus d-none)
         currentItem.classList.remove('d-none');
         
-        // Jalankan efek mengetik
+        // Jalankan ketikan
         typeEffect(typingElement, textToType, 30, () => {
             currentIdx++;
             showNextStory();
         });
     }
 
-    // Jalankan animasi saat tombol "Lihat Story" diklik atau saat section terlihat
-    // Untuk demo ini, kita jalankan langsung:
+    // Mulai urutan pertama
     showNextStory();
-});
+}
 </script>
 <body data-key="d9faced3377732b0edf19e90d1bde0cd5de04801c75eb41743" data-url="https://api.ulems.my.id/" data-audio="assets/music/Ed Sheeran - Perfect (Lyrics)_256k.mp3 " data-confetti="true" data-time="2026-03-30 09:30:00">
 
@@ -165,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 <!-- Home -->
                 <section id="home" class="bg-light-dark position-relative overflow-hidden p-0 m-0">
-                    <img src="./assets/images/placeholder.webp" data-src="./assets/images/bg.webp" alt="bg" class="position-absolute opacity-25 top-50 start-50 translate-middle bg-cover-home">
+                    <img src="./assets/images/placeholder.webp" data-src="./assets/images/bgbelakang.webp" alt="bg" class="position-absolute opacity-25 top-50 start-50 translate-middle bg-cover-home">
 
                     <div class="position-relative text-center bg-overlay-auto" style="background-color: unset;">
                         <h1 class="font-esthetic pt-5 pb-4 fw-medium" style="font-size: 2.25rem;">Undangan Pernikahan</h1>
@@ -302,8 +316,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                             <div class="position-relative">
                                 <div class="position-absolute d-flex justify-content-center align-items-center top-50 start-50 translate-middle w-100 h-100 bg-overlay-auto z-3" style="opacity: 100%; background-color: unset;">
-                                    <button class="btn btn-outline-auto btn-sm rounded-4 shadow-sm" onclick="undangan.guest.showStory(this.parentNode)"><i class="fa-solid fa-heart fa-bounce me-2"></i>Lihat Story</button>
-                                </div>
+                                   <button class="btn btn-outline-auto btn-sm rounded-4 shadow-sm" onclick="startTypingStory(this.parentNode)">
+                                <i class="fa-solid fa-heart fa-bounce me-2"></i>Lihat Story
+                            </button>
+                          </div>
 
                               <div class="overflow-y-scroll overflow-x-hidden p-2 with-scrollbar" style="height: 20rem;" id="story-container">
                                 <div class="row story-item mb-4">
@@ -430,75 +446,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 </section>
 
                 <!-- Gallery -->
-                <section class="bg-white-black pb-5 pt-3" id="gallery">
-                    <div class="container">
-                        <div class="border rounded-5 shadow p-3">
+            <section class="bg-theme-auto pb-5 pt-3" id="gallery">
+                <div class="container">
+                    <div class="border rounded-5 shadow p-3 ">
+                        <h2 class="font-esthetic text-center py-2 m-0" style="font-size: 2.25rem;">Galeri</h2>
 
-                            <h2 class="font-esthetic text-center py-2 m-0" style="font-size: 2.25rem;">Galeri</h2>
-
-                            <div id="carousel-image-one" data-aos="fade-up" data-aos-duration="1500" class="carousel slide mt-4" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel-image-one" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel-image-one" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel-image-one" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-
-                                <div class="carousel-inner rounded-4">
-                                    <div class="carousel-item active">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=1" alt="image 1" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=2" alt="image 2" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=3" alt="image 3" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                </div>
-
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-image-one" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-
-                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-image-one" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                        <div class="dynamic-gallery-grid mt-4">
+                            <div class="gallery-item item-h">
+                                <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/800/400?random=1" class="img-fluid" >
                             </div>
 
-                            <div id="carousel-image-two" data-aos="fade-up" data-aos-duration="1500" class="carousel slide mt-4" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel-image-two" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel-image-two" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel-image-two" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
+                            <div class="gallery-item item-v">
+                                <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/400/800?random=2" class="img-fluid" >
+                            </div>
 
-                                <div class="carousel-inner rounded-4">
-                                    <div class="carousel-item active">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=4" alt="image 4" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=5" alt="image 5" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/1280/720?random=6" alt="image 6" class="d-block img-fluid cursor-pointer" onclick="undangan.guest.modal(this)">
-                                    </div>
-                                </div>
+                            <div class="gallery-item">
+                                <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/400/400?random=3" class="img-fluid">
+                            </div>
 
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-image-two" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
+                            <div class="gallery-item item-h">
+                                <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/800/400?random=4" class="img-fluid" >
+                            </div>
 
-                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-image-two" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
+                            <div class="gallery-item">
+                                <img src="./assets/images/placeholder.webp" data-src="https://picsum.photos/400/400?random=5" class="img-fluid">
                             </div>
                         </div>
                     </div>
-                </section>
-
+                </div>
+            </section>
                 <!-- Wave Separator -->
                 <div class="svg-wrapper">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="color-theme-svg no-gap-bottom">
@@ -648,12 +624,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         <div class="row align-items-center justify-content-between flex-column pb-3">
                             <div class="col-auto">
-                                <small>Build with<i class="fa-solid fa-heart mx-1"></i></small>
+                               <!--<small>Build with<i class="fa-solid fa-heart mx-1"></i></small>-->
                             </div>
+                            
                             <div class="col-auto">
-                                <small><i class="fa-brands fa-github me-1"></i><a target="_blank" href="https://github.com/dewanakl/undangan">github</a></small>
-                                <small><i class="fa-solid fa-chart-simple me-1"></i><a target="_blank" href="https://status.ulems.my.id">status</a></small>
-                                <small><i class="fa-solid fa-music me-1"></i><a target="_blank" href="https://pixabay.com/music/modern-classical-pure-love-304010">music</a></small>
+                                <!--<small><i class="fa-brands fa-github me-1"></i><a target="_blank" href="https://github.com/dewanakl/undangan">github</a></small>-->
+                               <!--<small><i class="fa-solid fa-chart-simple me-1"></i><a target="_blank" href="https://status.ulems.my.id">status</a></small>-->
+                               <!--<small><i class="fa-solid fa-music me-1"></i><a target="_blank" href="https://pixabay.com/music/modern-classical-pure-love-304010">music</a></small>-->
                             </div>
                         </div>
                     </div>
@@ -744,8 +721,8 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="text-center position-fixed w-100" style="bottom: 8%; left: 0;">
             <div class="d-flex flex-column">
-                <small class="text-secondary">from</small>
-                <small class="text-theme-auto"><i class="fa-brands fa-github me-1"></i></small>
+                <small class="text-secondary"></small>
+                <!--<small class="text-theme-auto"><i class="fa-brands fa-github me-1"></i></small>-->
             </div>
         </div>
     </div>
@@ -759,7 +736,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         <a class="btn d-flex justify-content-center align-items-center bg-overlay-auto p-2 m-1 rounded-circle border shadow-sm z-1" role="button" target="_blank" href="./assets/images/placeholder.webp" id="button-modal-click">
                             <i class="fa-solid fa-arrow-up-right-from-square" style="width: 1em !important;"></i>
                         </a>
-                        <button class="btn d-flex justify-content-center align-items-center bg-overlay-auto p-2 m-1 rounded-circle border shadow-sm z-1" id="button-modal-download">
+                        <button class="btn d-flex justify-content-center align-items-center bg-overlay-auto p-2 m-1 rounded-circle border shadow-sm z-1" id=>
                             <i class="fa-solid fa-download" style="width: 1em !important;"></i>
                         </button>
                         <button class="btn d-flex justify-content-center align-items-center bg-overlay-auto p-2 m-1 rounded-circle border shadow-sm z-1" data-bs-dismiss="modal">
