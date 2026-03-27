@@ -110,6 +110,16 @@ export const image = (() => {
     const download = (blobUrl) => {
         c.download(blobUrl, `${window.location.hostname}_image_${Date.now()}`);
     };
+     /**
+     * @returns {void}
+     */
+    const hideDownload = () => {
+        const downloadElement = document.getElementById('download');
+        if (downloadElement) {
+            downloadElement.remove();
+        }
+    };
+
 
     /**
      * @returns {object}
@@ -122,6 +132,7 @@ export const image = (() => {
         return {
             load,
             download,
+            hideDownload,
             hasDataSrc,
         };
     };
